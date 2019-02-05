@@ -36,6 +36,10 @@ Once you have one or more data points, you can generate plotly offline html char
 ```python make_graphs.py``` One graph per item in the config file will be in the PriceScraper directory.
 
 
+## Clearing your databases
+
+PriceScraper uses TinyDB, a JSON based data storage library to hang on to results between sessions. If you want to clear your database, run ```python empty_dbs.py``` in the directory of your PriceScraper.
+
 ## How it works
 
 Popular websites often block html parsers (for example, Amazon blocks Python's requests library's 'get' function). This makes it hard to scrape certain websites. This is where Selenium comes in. Selenium acts as a layer between Python and Chrome's Web Driver to programatically navigate web pages. After *sleep_minutes* number of minutes from config.json, a new Chrome window is opened with Selenium. The window navigates to Amazon, searches for your item in the window, and scrapes the current price from the first result. This result is then stored in a [TinyDB](https://tinydb.readthedocs.io/en/latest/). The program sleeps, then does it again. This tool is meant to help find the best time to buy your favorite products!
